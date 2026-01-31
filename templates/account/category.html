@@ -1,0 +1,29 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+<img src="{% static 'image/logos.png' %}" alt="Logo" class="img-fluid">
+
+{% block start %}
+<section class="section-content padding-y bg">
+<div class="container">
+    <div class="flex flex-wrap justify-center gap-6">
+        <div class="card">
+            <div class="row no-gutters">
+                <aside class="col-md-6">
+                    <article class="gallery-wrap"> 
+                        <div class="img-big-wrap">
+    <h2 class="text-3xl font-bold text-center mb-6">Product Categories</h2>
+    <div class="flex flex-wrap justify-center gap-6">
+        {% for category in categories %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 p-3 w-40 h-48 flex flex-col items-center">
+            <img src="{{ category.category_image.url }}" class="w-32 h-32 object-cover rounded-md" alt="{{ category.category_name }}">
+            <div class="text-center mt-2">
+                <h5 class="text-sm font-semibold mb-1">{{ category.category_name }}</h5>
+                <a href="{% url 'product' category.slug %}" class="text-blue-500 hover:underline text-xs">View Products</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</section>
+{% endblock %}
