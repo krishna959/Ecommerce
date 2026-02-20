@@ -64,8 +64,6 @@ def register_page(request):
     return render(request ,'account/register.html')
 
 
-
-
 def activate_email(request , email_token):
     try:
         user = Profile.objects.get(email_token= email_token)
@@ -112,12 +110,11 @@ def cart(request):
     cart.razor_pay_order_id = payment['id']
     cart.save()
 
-    context = {'cart': cart, 'payment': payment}
+    context = {'cart': cart, 'payment': payment, 'KEY_ID':settings.KEY_ID }
     print("***********")
     print(payment)
     print("*********")
     return render(request, 'account/cart.html', context)
-
 
 def product_view(request, slug):
     product = Product.objects.get(slug=slug)
